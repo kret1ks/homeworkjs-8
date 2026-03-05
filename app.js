@@ -102,8 +102,8 @@ passwordRef.addEventListener("input", (event) => {
 
 
 
-localStorage.setItem("name", nameRef.value)
-localStorage.setItem("password", passeordRef.value)
+// localStorage.setItem("name", nameRef.value)
+// localStorage.setItem("password", passwordRef.value)
 
 function checkStorage () {
     const getName = localStorage.getItem("name")
