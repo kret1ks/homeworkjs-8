@@ -2,6 +2,8 @@
 // const btnRef = document.querySelector("#addBookmarkBtn")
 // const listRef = document.querySelector("#bookmarkList")
 
+const { use } = require("react")
+
 
 // const bookArray = JSON.parse(localStorage.getItem("key")) || [];
 // console.log(bookArray);
@@ -71,61 +73,39 @@
 // Створіть просту форму з полями вводу і кнопкою, яка зберігає дані в localStorage. При наступному завантаженні сторінки зчитайте збережені дані з localStorage та відобразіть їх у відповідних полях вводу.
 
 
-const nameRef = document.querySelector('#username');
-const passwordRef = document.querySelector('#password');
-const saveBtn = document.querySelector("#saveBtn");
+const userValue = document.querySelector('#username')
+const passwordValue = document.querySelector('#password')
+const saveBtn = document.querySelector('#saveBtn')
 
 
-nameRef.value = localStorage.getItem("name") || "";
-passwordRef.value = localStorage.getItem("password") || "";
+userValue.value = localStorage.getItem("name") || "";
+passwordValue.value = localStorage.getItem("password") || "";
+
+
+userValue.addEventListener("input", (event) => {
+    const value = event.target.value.trim()
+    localStorage.setItem("name", value)
+})
+
+
+passwordValue.addEventListener("input", (event) => {
+    const value = event.target.value.trim()
+    localStorage.setItem("password", value)
+})
 
 
 saveBtn.addEventListener("click", (event) => {
-    event.preventDefault(); 
-    nameRef.value = ""
-    passwordRef.value = ""
-
-});
-
-
-nameRef.addEventListener("input", (event) => {
-    const inputName = event.target.value.trim();
-    localStorage.setItem("name", inputName);
-});
+    event.preventDefault()
+    userValue.value = ""
+    passwordValue.value = ""
+})
 
 
+function checkStorage() {
+    const savedName = localStorage.getItem("name")
+    const savedPassword = localStorage.getItem("password")
 
-passwordRef.addEventListener("input", (event) => {
-    const inputPassword = event.target.value.trim();
-    localStorage.setItem("password", inputPassword);
-});
-
-
-
-// localStorage.setItem("name", nameRef.value)
-// localStorage.setItem("password", passwordRef.value)
-
-function checkStorage () {
-    const getName = localStorage.getItem("name")
-    const getPassword = localStorage.getItem("password")
-
-    nameRef.value = getName
-    passwordRef.value = getPassword
+    userValue.value = savedName
+    passwordValue.value = savedPassword
 }
 checkStorage()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
