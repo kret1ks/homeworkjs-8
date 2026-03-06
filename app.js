@@ -109,3 +109,34 @@ function checkStorage() {
     passwordValue.value = savedPassword
 }
 checkStorage()
+
+
+
+/////////////////////////////////////////////////////////////////////////
+
+
+
+
+import template from "./template.hbs";
+import products from "./products.json";
+
+
+const container = document.querySelector("body");
+
+const markup = template(products);
+
+container.insertAdjacentHTML("beforeend", markup);
+
+
+const search = document.querySelector("#search");
+
+search.addEventListener("input", (e) => {
+  const value = e.target.value.toLowerCase();
+
+  const filteredProducts = products.filter(product =>
+    product.name.toLowerCase().includes(value)
+  );
+
+  const markup = template(filteredProducts);
+  container.innerHTML = markup;
+});
